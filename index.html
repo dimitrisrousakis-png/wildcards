@@ -46,9 +46,30 @@
 .giftEnter{border:0;border-radius:10px;background:var(--accent);color:#06111c;padding:0 16px;font-weight:900;font:inherit}
 .giftError{height:20px;color:#ff8e8e;font-size:11px;padding-top:7px}
 .giftPrivate{margin-top:18px;color:#657187;font-size:10px;letter-spacing:.8px;text-transform:uppercase}
-""</style>
+""
+body.light{
+ --bg:#f4f7f8;--panel:#ffffff;--panel2:#edf2f4;--line:#d6e0e4;--text:#14232b;
+ --muted:#667b85;--green:#167a56;--amber:#946b00;--red:#b83d45;--blue:#2368a2;
+ --chip:#edf2f4;--shadow:0 12px 32px rgba(30,55,65,.10);
+ background:radial-gradient(circle at 20% -10%,#dcebf3 0,transparent 34%),var(--bg);
+}
+body.light .heroCard,body.light .stat{background:linear-gradient(150deg,#ffffff,#f1f5f6)}
+body.light .mark{background:linear-gradient(145deg,#ffffff,#e8eff2);border-color:#c8d5da}
+body.light .pill.active,body.light .nav button.active{background:#14232b;color:#fff;border-color:#14232b}
+body.light .nav{background:rgba(255,255,255,.94)}
+body.light .modal{background:rgba(30,45,55,.35)}
+body.light .sheetPanel{background:#f8fbfc;border-color:#cbd8dd}
+body.light .close{background:#e5ecef;color:#14232b}
+body.light .alert p,body.light .guideCard p,body.light .positionCard p,body.light .detailBlock p{color:#334b56}
+body.light .holding{background:#e7f5ee;border-color:#b9ddcc;color:#18583f}
+body.light .giftGate{background:radial-gradient(circle at 50% 15%,#e4edf5 0,#f7f9fb 45%,#eef2f5 100%)}
+body.light .giftInputWrap{background:#fff}
+body.light .giftInput{color:#14232b}
+.themeToggle{cursor:pointer;min-width:96px;text-align:center}
+@media(max-width:760px){.themeToggle{display:block;padding:8px 10px;min-width:auto;font-size:12px}}
+</style>
 </head><body><div id="giftGate" class="giftGate"><div class="giftCard"><div class="giftMark">✦</div><h1>Wildcards</h1><p class="giftSub">15 asymmetric opportunities. One disciplined framework for following what matters.</p><form id="giftForm"><div class="giftInputWrap"><input id="giftPassword" class="giftInput" type="password" placeholder="Enter password" autocomplete="current-password" aria-label="Password"><button class="giftEnter" type="submit">Enter</button></div><div id="giftError" class="giftError"></div></form><div class="giftPrivate">Private investment dashboard</div></div></div><div class="app">
-<header class="top"><div class="brand"><div class="mark">W</div><div><h1>Wildcards</h1><p>Thesis monitor · signal over noise</p></div></div><a class="sheet" href="https://docs.google.com/spreadsheets/d/1INSi7wR5S1lCcXMMVwBIG67Qzcgl4LYHu0QOeA1Y5Rs/edit" target="_blank">Open Sheet ↗</a></header>
+<header class="top"><div class="brand"><div class="mark">W</div><div><h1>Wildcards</h1><p>Thesis monitor · signal over noise</p></div></div><button id="themeToggle" class="sheet themeToggle" type="button" aria-label="Switch color theme">☀️ Light</button></header>
 <main id="dashboard">
 <section class="hero"><div class="heroCard"><div class="eyebrow">Portfolio intelligence</div><h2>What needs attention?</h2><p>Only fundamental developments change the thesis. Price movement alone never creates an alert.</p><div style="margin-top:16px" class="sync"><i></i> Snapshot from Wildcards Google Sheet · 4 Oct 2026</div></div><div class="statgrid"><div class="stat"><b id="nImp">0</b><span>Improving</span></div><div class="stat"><b id="nWatch">0</b><span>Watch</span></div><div class="stat"><b>15</b><span>Wildcards</span></div><div class="stat"><b id="nNear">0</b><span>Near/Attractive</span></div></div></section>
 <input id="search" class="search" placeholder="Search ticker or company…">
@@ -112,6 +133,24 @@ document.getElementById('nImp').textContent=stocks.filter(s=>s.th==='Improving')
      err.textContent='Incorrect password';
      input.select();
    }
+ });
+})();
+</script>
+<script>
+(function(){
+ const btn=document.getElementById('themeToggle');
+ const saved=localStorage.getItem('wildcardsTheme');
+ const initial=saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark');
+ function applyTheme(theme){
+   document.body.classList.toggle('light',theme==='light');
+   btn.textContent=theme==='light'?'🌙 Dark':'☀️ Light';
+   btn.setAttribute('aria-label',theme==='light'?'Switch to dark mode':'Switch to light mode');
+ }
+ applyTheme(initial);
+ btn.addEventListener('click',function(){
+   const next=document.body.classList.contains('light')?'dark':'light';
+   localStorage.setItem('wildcardsTheme',next);
+   applyTheme(next);
  });
 })();
 </script></body></html>
