@@ -112,6 +112,19 @@ body.light .tag.signal-watch{color:#765604;background:#fff2cc;border-color:#ead9
 body.light .tag.signal-low{color:#9d343b;background:#fae8e9;border-color:#ebc3c6}
 body.light .tag.signal-lowmed,body.light .tag.signal-medium{color:#765604;background:#fff2cc;border-color:#ead999}
 body.light .tag.signal-neutral{color:#245f8d;background:#e6f1f8;border-color:#bfd7e8}
+
+/* Strong alert badges */
+.alertMeta .tag{font-weight:800;border-width:1px}
+.alertMeta .signal-improving{background:#167a56!important;color:#fff!important;border-color:#167a56!important}
+.alertMeta .signal-watch{background:#a97808!important;color:#fff!important;border-color:#a97808!important}
+.alertMeta .signal-low{background:#b83d45!important;color:#fff!important;border-color:#b83d45!important}
+.alertMeta .signal-lowmed,.alertMeta .signal-medium{background:#c58a12!important;color:#111!important;border-color:#c58a12!important}
+.alertMeta .signal-neutral{background:#356f9d!important;color:#fff!important;border-color:#356f9d!important}
+body.light .alertMeta .signal-improving{background:#dff3e9!important;color:#126044!important;border-color:#a9d7c2!important}
+body.light .alertMeta .signal-watch{background:#fff0bd!important;color:#715100!important;border-color:#dfca7e!important}
+body.light .alertMeta .signal-low{background:#f9dfe1!important;color:#96343a!important;border-color:#e5b4b8!important}
+body.light .alertMeta .signal-lowmed,body.light .alertMeta .signal-medium{background:#ffe7a3!important;color:#674900!important;border-color:#ddc36e!important}
+body.light .alertMeta .signal-neutral{background:#dcecf7!important;color:#245f8d!important;border-color:#accde3!important}
 </style>
 </head><body><div class="app">
 <header class="top"><div class="brand"><div class="mark">W</div><div><h1>Wildcards</h1><p>Thesis monitor · signal over noise</p></div></div><button id="themeToggle" class="sheet themeToggle" type="button" aria-label="Switch color theme">☀️ Light</button></header>
@@ -157,15 +170,19 @@ const alerts=[
 ];
 
 function signalClass(type,value){
- const v=String(value||'').toLowerCase();
+ const v=String(value||'').toLowerCase().replace(/→/g,' ');
  if(type==='thesis'){
-   if(v.includes('improving')) return 'signal-improving';
+   if(v.includes('broken')) return 'signal-low';
    if(v.includes('watch')) return 'signal-watch';
+   if(v.includes('improving')) return 'signal-improving';
  }
  if(type==='confidence'){
    if(v.includes('low-medium')||v.includes('low medium')) return 'signal-lowmed';
    if(v.includes('medium')) return 'signal-medium';
    if(v.includes('low')) return 'signal-low';
+ }
+ if(type==='scenario'){
+   if(v.includes('no change')) return 'signal-neutral';
  }
  return 'signal-neutral';
 }
