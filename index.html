@@ -56,6 +56,50 @@ body.light .giftInputWrap{background:#fff}
 body.light .giftInput{color:#14232b}
 .themeToggle{cursor:pointer;min-width:96px;text-align:center}
 @media(max-width:760px){.themeToggle{display:block;padding:8px 10px;min-width:auto;font-size:12px}}
+
+/* Light theme refinement */
+body.light{
+ --bg:#f5f7f8;--panel:#ffffff;--panel2:#f1f4f5;--line:#d7e0e3;--text:#17262d;
+ --muted:#647982;--green:#187454;--amber:#8a6508;--red:#b34249;--blue:#28689a;
+ --chip:#f0f4f5;--shadow:0 10px 28px rgba(32,54,64,.08);
+ background:linear-gradient(180deg,#eef4f6 0,#f8fafb 260px,#f5f7f8 100%);
+}
+body.light .heroCard,body.light .stat,body.light .card,body.light .alert,
+body.light .guideCard,body.light .positionCard,body.light .sectorCard,
+body.light .search,body.light .pill,body.light .sheet{
+ background:#fff;color:var(--text);border-color:var(--line);
+}
+body.light .heroCard{background:linear-gradient(145deg,#ffffff,#f5f8f9)}
+body.light .mark{background:#fff;color:#17262d;border-color:#cbd8dd;box-shadow:0 4px 14px rgba(30,55,65,.06)}
+body.light .hero p,body.light .company,body.light .bottomline,body.light .sync,
+body.light .eyebrow,body.light .sectionTitle,body.light .guideCard p,
+body.light .sectorCard p,body.light .detailHead p{color:var(--muted)}
+body.light .metric,body.light .finCell,body.light .scenario div{background:#f3f6f7;border-color:#dbe3e6}
+body.light .metric b,body.light .finCell b,body.light .scenario b,
+body.light .ticker,body.light .marketPrice{color:#17262d}
+body.light .pill:hover{background:#f1f5f6}
+body.light .pill.active{background:#17262d;color:#fff;border-color:#17262d}
+body.light .nav{background:rgba(255,255,255,.96);border-color:#d2dde1;box-shadow:0 10px 30px rgba(30,50,60,.12)}
+body.light .nav button{color:#61747d}
+body.light .nav button.active{background:#17262d;color:#fff}
+body.light .modal{background:rgba(34,49,57,.28)}
+body.light .sheetPanel{background:#fbfcfc;border-color:#d2dde1}
+body.light .close{background:#edf2f4;color:#17262d}
+body.light .detailBlock{border-color:#dbe3e6}
+body.light .detailBlock p,body.light .alert p,body.light .wildIntro p{color:#344b55}
+body.light .companyTab{background:#f3f6f7;color:#627780;border-color:#d9e2e5}
+body.light .companyTab[aria-selected="true"]{color:#17262d;background:#e7eef1}
+body.light .tag{background:#f1f5f6;border-color:#d7e1e4;color:#405761}
+body.light .status.improving{color:#116247;background:#e4f3ec}
+body.light .status.watch{color:#765604;background:#fff2cc}
+body.light .status.intact{color:#245f8d;background:#e6f1f8}
+body.light .status.broken{color:#9d343b;background:#fae8e9}
+body.light .entryTrack{background:#d9e2e5}
+body.light .entryDot{box-shadow:0 0 0 2px #fff}
+body.light .wildIntro{background:linear-gradient(135deg,#fff,#f2f6f7);border-color:#d7e0e3}
+body.light .holding{background:#e7f4ee;border-color:#bfdccd;color:#185d44}
+body.light input::placeholder{color:#87979e}
+body.light .themeToggle{background:#fff;color:#17262d}
 </style>
 </head><body><div class="app">
 <header class="top"><div class="brand"><div class="mark">W</div><div><h1>Wildcards</h1><p>Thesis monitor · signal over noise</p></div></div><button id="themeToggle" class="sheet themeToggle" type="button" aria-label="Switch color theme">☀️ Light</button></header>
