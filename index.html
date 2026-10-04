@@ -35,18 +35,7 @@
 .sectorCard b{font-size:12px}.sectorCard p{margin:4px 0 0;color:var(--muted);font-size:11px;line-height:1.45}
 .franceKey{font-size:10px;color:var(--muted);margin:6px 0 12px}
 ""
-.giftGate{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 15%,#17243a 0,#0b1220 42%,#070b12 100%);display:flex;align-items:center;justify-content:center;padding:24px}
-.giftGate.unlocked{display:none}
-.giftCard{width:min(100%,390px);text-align:center}
-.giftMark{width:72px;height:72px;border:1px solid rgba(255,255,255,.16);border-radius:22px;margin:0 auto 22px;display:grid;place-items:center;font-size:32px;background:rgba(255,255,255,.05);box-shadow:0 20px 60px rgba(0,0,0,.25)}
-.giftCard h1{font-size:34px;letter-spacing:-1.2px;margin:0 0 8px}
-.giftCard .giftSub{color:var(--muted);font-size:13px;line-height:1.55;margin:0 auto 27px;max-width:300px}
-.giftInputWrap{display:flex;gap:7px;background:rgba(255,255,255,.055);border:1px solid var(--line);padding:6px;border-radius:14px}
-.giftInput{min-width:0;flex:1;border:0;background:transparent;color:var(--text);padding:10px;font:inherit;outline:none}
-.giftEnter{border:0;border-radius:10px;background:var(--accent);color:#06111c;padding:0 16px;font-weight:900;font:inherit}
-.giftError{height:20px;color:#ff8e8e;font-size:11px;padding-top:7px}
-.giftPrivate{margin-top:18px;color:#657187;font-size:10px;letter-spacing:.8px;text-transform:uppercase}
-""
+
 body.light{
  --bg:#f4f7f8;--panel:#ffffff;--panel2:#edf2f4;--line:#d6e0e4;--text:#14232b;
  --muted:#667b85;--green:#167a56;--amber:#946b00;--red:#b83d45;--blue:#2368a2;
@@ -68,7 +57,7 @@ body.light .giftInput{color:#14232b}
 .themeToggle{cursor:pointer;min-width:96px;text-align:center}
 @media(max-width:760px){.themeToggle{display:block;padding:8px 10px;min-width:auto;font-size:12px}}
 </style>
-</head><body><div id="giftGate" class="giftGate"><div class="giftCard"><div class="giftMark">✦</div><h1>Wildcards</h1><p class="giftSub">15 asymmetric opportunities. One disciplined framework for following what matters.</p><form id="giftForm"><div class="giftInputWrap"><input id="giftPassword" class="giftInput" type="password" placeholder="Enter password" autocomplete="current-password" aria-label="Password"><button class="giftEnter" type="submit">Enter</button></div><div id="giftError" class="giftError"></div></form><div class="giftPrivate">Private investment dashboard</div></div></div><div class="app">
+</head><body><div class="app">
 <header class="top"><div class="brand"><div class="mark">W</div><div><h1>Wildcards</h1><p>Thesis monitor · signal over noise</p></div></div><button id="themeToggle" class="sheet themeToggle" type="button" aria-label="Switch color theme">☀️ Light</button></header>
 <main id="dashboard">
 <section class="hero"><div class="heroCard"><div class="eyebrow">Portfolio intelligence</div><h2>What needs attention?</h2><p>Only fundamental developments change the thesis. Price movement alone never creates an alert.</p><div style="margin-top:16px" class="sync"><i></i> Snapshot from Wildcards Google Sheet · 4 Oct 2026</div></div><div class="statgrid"><div class="stat"><b id="nImp">0</b><span>Improving</span></div><div class="stat"><b id="nWatch">0</b><span>Watch</span></div><div class="stat"><b>15</b><span>Wildcards</span></div><div class="stat"><b id="nNear">0</b><span>Near/Attractive</span></div></div></section>
@@ -119,22 +108,6 @@ document.getElementById('search').addEventListener('input',render);document.quer
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');['dashboard','alerts','guide'].forEach(v=>document.getElementById(v).style.display=b.dataset.view===v?'block':'none');window.scrollTo({top:0,behavior:'smooth'})});
 document.getElementById('alertList').innerHTML=alerts.map(a=>`<article class="alert"><div class="row"><h3>${a.t} — Material update</h3><span class="company">${a.date}</span></div><p>${a.text}</p><div class="alertMeta"><span class="tag">Thesis: ${a.th}</span><span class="tag">Confidence: ${a.conf}</span><span class="tag">Scenarios: ${a.sc}</span></div></article>`).join('');
 document.getElementById('nImp').textContent=stocks.filter(s=>s.th==='Improving').length;document.getElementById('nWatch').textContent=stocks.filter(s=>s.th==='Watch').length;document.getElementById('nNear').textContent=stocks.filter(s=>s.val.includes('ATTRACTIVE')).length;render();
-</script><script>
-(function(){
- const gate=document.getElementById('giftGate'), form=document.getElementById('giftForm'), input=document.getElementById('giftPassword'), err=document.getElementById('giftError');
- if(sessionStorage.getItem('wildcardsGiftAccess')==='yes') gate.classList.add('unlocked');
- form.addEventListener('submit',function(e){
-   e.preventDefault();
-   if(input.value.trim().toLowerCase()==='wildcards'){
-     sessionStorage.setItem('wildcardsGiftAccess','yes');
-     gate.classList.add('unlocked');
-     input.value=''; err.textContent='';
-   } else {
-     err.textContent='Incorrect password';
-     input.select();
-   }
- });
-})();
 </script>
 <script>
 (function(){
